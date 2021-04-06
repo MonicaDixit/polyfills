@@ -194,3 +194,14 @@ function deepClone(obj) {
   return newObject;
 }
 
+/***********************************************************************************************
+* About NaN
+
+console.log(Number.isNaN(NaN));            // true
+console.log(Number.isNaN(Math.sqrt(-2)));  // true
+ 
+console.log(Number.isNaN('hello'));        // false
+console.log(Number.isNaN(['x']));          // false
+console.log(Number.isNaN({}));             // false
+
+NaN === NaN // false
