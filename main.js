@@ -175,6 +175,13 @@ function myIsArray(arraylist) {
   }
 }
 
+function isArray(value) {
+	return value.constructor.name === "Array";
+}
+
+function isArray(value) {
+	return value instanceof Array;
+}
 /********************************************************************
  * Object deep clone
  */
