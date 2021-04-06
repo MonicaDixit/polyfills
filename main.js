@@ -174,3 +174,23 @@ function myIsArray(arraylist) {
     return true;
   }
 }
+
+/********************************************************************
+ * Object deep clone
+ */
+
+
+function deepClone(obj) {
+  var newObject = {};
+  for (let key in obj) {
+    if (typeof key === 'object' && object[key] !== null) {
+      newObject[key] = deepClone(object[key]);
+    }
+    else {
+      newObject[key] = object[key]
+    }
+  }
+  
+  return newObject;
+}
+
