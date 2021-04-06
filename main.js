@@ -164,3 +164,13 @@ function isNotANum(x) {
   if (x !== x) return true;
   return false;
 }
+
+/********************************************************************
+ * polyfill for Array.isArray
+ */
+
+function myIsArray(arraylist) {
+  if (Object.prototype.toString.call(arraylist) === '[Object Array]') {
+    return true;
+  }
+}
