@@ -212,3 +212,32 @@ console.log(Number.isNaN(['x']));          // false
 console.log(Number.isNaN({}));             // false
 
 NaN === NaN // false
+
+
+/***********************************************************************************************
+*. Object.create and delete operator
+/*************************************************************************************************/
+
+
+Why does delete operator does not work on an Object created with Object.create() method?
+	
+	Object.create() method is used to create a new object which extends the existing object which you have passed, in your case it's Dog object.
+
+
+var Dog = {
+  name: 'tommy',
+  height: '4'
+};
+
+var newDog = Object.create(Dog);
+
+delete newDog.name; // It deletes the property in the newDog, but still the Dog property contains the name property so when you console.log(newDog.name) it prints Dog.name property.
+
+console.log(newDog.name)
+
+delete Dog.name;
+
+console.log(newDog.name); // now it's deleted
+
+
+When you delete the name property in your newDog object, it deletes perfectly, but the inherited name property from the Dog object is still there. so you should delete that too.
