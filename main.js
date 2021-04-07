@@ -253,3 +253,6 @@ both dont allow deletion of existing properties
 the diff is that object.seal allows changing the values of existing properties, whereas object.freeze doesnt allow 
 changing the values of existing properties as well
 
+Nothing can be added to or removed from the properties set of a frozen object. Any attempt to do so will fail, either silently or by throwing a TypeError exception (most commonly, but not exclusively, when in strict mode).
+Objects sealed with Object.seal() can have their existing properties changed. Existing properties in objects frozen with Object.freeze() are made immutable.
+
