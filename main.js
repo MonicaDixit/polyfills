@@ -241,3 +241,15 @@ console.log(newDog.name); // now it's deleted
 
 
 When you delete the name property in your newDog object, it deletes perfectly, but the inherited name property from the Dog object is still there. so you should delete that too.
+
+
+
+/*******************************************************************************************************************
+*Object.seal vs object.freeze
+*********************************************************************************************************************
+
+Both dont allow addition of new properties
+both dont allow deletion of existing properties
+the diff is that object.seal allows changing the values of existing properties, whereas object.freeze doesnt allow 
+changing the values of existing properties as well
+
