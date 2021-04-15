@@ -261,3 +261,27 @@ Objects sealed with Object.seal() can have their existing properties changed. Ex
 /***********************************************************************************************************************
 
 the properties added thru Object.defineProprty are immutable and not enumerable.
+
+/***********************************************************************************************************************
+* forEach, for in, map in a sparse arr
+/***********************************************************************************************************************
+
+
+forEach ignores the empty indexes
+map takes into account the empty indexes
+for in also takes into account the empty indexes
+
+const arr = [1,,,2]
+
+// forEach
+arr.forEach(i => console.log(i)) // 1 2
+
+
+// map
+console.log(arr.map(i => i * 2)) // [2, empty x 2, 4]
+
+// for ... of
+for (const i of arr) {
+  console.log(i) // 1 undefined undefined 2
+}
+
