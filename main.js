@@ -343,3 +343,27 @@ function debounce(func, wait) {
   return wrapper;
 }
 
+/***********************************************************************************************************************
+*Array flatten
+/***********************************************************************************************************************
+/**
+ * @param { Array } arr
+ * @param { number } depth
+ */
+function flat(arr, depth = 1) {
+ 
+ let result = [];
+
+ arr.forEach(ele => {
+   if (Array.isArray(ele) && depth > 0) {
+     result = result.concat(flat(ele, depth - 1));
+     return result;
+   }
+
+   else {
+     result.push(ele);
+   }
+ })
+
+ return result
+}
