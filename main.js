@@ -318,3 +318,28 @@ function throttle(func, wait) {
   return wrapper;
     
   }
+
+/***********************************************************************************************************************
+*throttle
+/***********************************************************************************************************************
+
+/**
+ * @param {Function} func
+ * @param {number} wait
+ */
+function debounce(func, wait) {
+  let timer = null;
+
+  function wrapper(arguments) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, [...arguments]);
+    }, wait)
+  }
+
+
+  return wrapper;
+}
+
