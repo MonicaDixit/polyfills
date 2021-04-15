@@ -319,29 +319,6 @@ function throttle(func, wait) {
     
   }
 
-/***********************************************************************************************************************
-*throttle
-/***********************************************************************************************************************
-
-/**
- * @param {Function} func
- * @param {number} wait
- */
-function debounce(func, wait) {
-  let timer = null;
-
-  function wrapper(arguments) {
-    if (timer) {
-      clearTimeout(timer);
-    }
-    timer = setTimeout(() => {
-      func.apply(this, [...arguments]);
-    }, wait)
-  }
-
-
-  return wrapper;
-}
 
 /***********************************************************************************************************************
 *throttle with leading and trailing options
@@ -399,6 +376,31 @@ function throttle(func, wait, option = {leading: true, trailing: true}) {
     timer = setTimeout(timeup, wait)
   }
 }
+
+/***********************************************************************************************************************
+*debounce
+/***********************************************************************************************************************
+
+/**
+ * @param {Function} func
+ * @param {number} wait
+ */
+function debounce(func, wait) {
+  let timer = null;
+
+  function wrapper(arguments) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, [...arguments]);
+    }, wait)
+  }
+
+
+  return wrapper;
+}
+
 
 /***********************************************************************************************************************
 *Array flatten
