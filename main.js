@@ -285,3 +285,36 @@ for (const i of arr) {
   console.log(i) // 1 undefined undefined 2
 }
 
+
+/***********************************************************************************************************************
+*throttle
+/***********************************************************************************************************************
+
+/**
+ * @param {Function} func
+ * @param {number} wait
+ */
+function throttle(func, wait) {
+  let waiting = false;
+  let lastargs;
+
+  function wrapper() {
+    if (!waiting) {
+      waiting = true;
+      func.apply(this, arguments);
+      setTimeout(() => {
+        if (lastargs) {
+          waiting = false;
+          func.apply(this, lastargs);
+        }
+        
+      }, wait)
+    }
+    else {
+      lastargs = [...arguments];
+    }
+  }
+
+  return wrapper;
+    
+  }
