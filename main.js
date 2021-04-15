@@ -344,6 +344,63 @@ function debounce(func, wait) {
 }
 
 /***********************************************************************************************************************
+*throttle with leading and trailing options
+/***********************************************************************************************************************
+
+/**
+ * @param {Function} func
+ * @param {number} wait
+ * @param {boolean} option.leading
+ * @param {boolean} option.trailing
+ */
+function throttle(func, wait, option = {leading: true, trailing: true}) {
+
+  // if both are false then do no thing
+  if(!option.leading && !option.trailing) {
+    return () => null;
+  }
+
+  let timer = null;
+  let lastArgs = null;
+  let lastContext = null;
+
+  return function throttled(...args) {
+
+    // firs time `timer` will be null
+    // subsequently, it will just store last function's data
+    if(timer) {
+      lastArgs = args;
+      lastContext = this;
+      return;
+    } else {
+      // whenn `timer` is null and if `leading` is true then invoke function.
+      // else don't do anything.
+      if(option.leading) {
+        func.apply(this, args);
+      }
+    }
+
+    const timeup = () => {
+      // if `trailing` is false then it won't run last function ever
+      // if you subsequently call function within `wait`
+      
+      // if `trailing` is true and you call function within `wait` then it will invoke here
+      if (option.trailing && lastArgs) {
+        func.apply(lastContext, lastArgs);
+        lastContext = null;
+        lastArgs = null;
+        // works only if you have called or stored last function call
+        timer = setTimeout(timeup, wait);
+      } else {
+        timer = null;
+      }
+    }
+
+    timer = setTimeout(timeup, wait)
+  }
+}
+
+/***********************************************************************************************************************
 *Array flatten
 /***********************************************************************************************************************
 /**
